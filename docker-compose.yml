@@ -15,7 +15,7 @@ services:
     build:
       context: .
       dockerfile: Backend.Dockerfile
-    container_name: backend
+    container_name: server
     networks:
       - local-net
     depends_on:
@@ -27,7 +27,7 @@ services:
       - ${PORT}:${PORT}
       - 9229:9229
     volumes:
-      - ./backend:/usr/src/app
+      - ./server:/usr/src/app
       - /usr/src/app/node_modules
 networks:
   local-net:

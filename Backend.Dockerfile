@@ -6,11 +6,11 @@ RUN apk add --no-cache  bash
 RUN npm install -g typeorm
 
 WORKDIR /usr/src/app
-COPY  backend/package*.json ./
-COPY  backend/yarn.lock ./
+COPY  server ./
+COPY  server ./
 
 RUN yarn
 
-COPY backend .
+COPY server .
 
 RUN yarn build
