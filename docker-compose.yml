@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  db:
+    image: "mcr.microsoft.com/mssql/server"
+    networks:
+      - local-net
+    environment:
+      SA_PASSWORD: "Your_password123"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+    ports:
+      - "1430:1433"
+  backend:
+    build:
+      context: .
+      dockerfile: Backend.Dockerfile
+    container_name: backend
+    networks:
+      - local-net
+    depends_on:
+      - db
+    command: bash -c 'yarn && yarn run create-schema && yarn run typeorm migration:run && yarn run start:debug'
+    env_file: .env
+
+    ports:
+      - ${PORT}:${PORT}
+      - 9229:9229
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+networks:
+  local-net:
+volumes:
+  my-datavolume:
