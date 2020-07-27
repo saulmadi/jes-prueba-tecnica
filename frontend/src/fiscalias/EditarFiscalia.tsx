@@ -90,7 +90,7 @@ export function EditarFiscalia() {
 
     return (
         <>
-            <h1>Crear Fiscalías</h1>
+            <h1>Editar Fiscalías</h1>
 
             <div>
                 <Form onSubmit={handleSubmit(crearFiscalia)}>
