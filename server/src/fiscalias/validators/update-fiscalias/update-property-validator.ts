@@ -16,9 +16,9 @@ export class UpdatePropertyValidator extends JoiCommandValidator<
       ciudad: joi.string().required(),
       direccion: joi.string().required(),
       telefono: joi.string().required(),
-      telefono2: joi.string().optional(),
-      lat: joi.number().optional(),
-      long: joi.number().optional(),
+      telefono2: joi.string().optional().allow(null),
+      lat: joi.number().optional().allow(null),
+      long: joi.number().optional().allow(null),
       id: joi.number().required(),
     });
   }

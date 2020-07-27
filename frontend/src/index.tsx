@@ -1,13 +1,26 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { createClient, ClientContextProvider } from 'react-fetching-library';
+
+
+const client = createClient({
+
+    requestInterceptors: [],
+    responseInterceptors: [],
+});
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <ClientContextProvider client={client}>
+      <Suspense fallback={<span>loading...</span>}>
+          <App />
+      </Suspense>
+  </ClientContextProvider>,
   document.getElementById('root')
 );
 

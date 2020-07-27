@@ -29,6 +29,25 @@ services:
     volumes:
       - ./server:/usr/src/app
       - /usr/src/app/node_modules
+
+  front:
+    build:
+      context: .
+      dockerfile: Front.Dockerfile
+    container_name: frontend
+    networks:
+      - local-net
+
+    stdin_open: true
+
+    command: bash -c 'yarn && yarn start'
+    env_file: .env
+    ports:
+      - 8001:${PORT}
+      - 9230:9229
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
 networks:
   local-net:
 volumes:

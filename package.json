@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-fetching-library": "^1.7.4",
+    "typescript": "^3.9.7"
+  }
+}
